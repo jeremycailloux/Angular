@@ -1,0 +1,26 @@
+<app-menu></app-menu>
+<form (ngSubmit)="onSubmit()" [formGroup]="albumForm">
+    <label>Titre: </label> <input type="text" formControlName="name" />
+
+    <div *ngIf="name.invalid && name.touched">
+        <p>Le nom est invalid</p>
+    </div>
+
+    <label>Auteur: </label> <input type="text" formControlName="author" />
+    <label>Note: </label> <input type="number" formControlName="grade" />
+
+    <div formArrayName="songs">
+        <div *ngFor="let song of songs.controls;let i = index">
+            <div [formGroupName]="i">
+                <label>nom chanson </label><input type="text" formControlName="name" />
+                <label>Durée </label><input type="number" formControlName="length" /> 
+                <button type="button" (click)="remove(i)">Supprimer</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <button type="button" (click)="addSong()">Ajouter une chanson</button>
+
+    <button type="submit" [disabled]="albumForm.invalid">Envoyer</button>
+</form>

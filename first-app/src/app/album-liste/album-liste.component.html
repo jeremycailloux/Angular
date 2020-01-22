@@ -1,0 +1,9 @@
+<app-menu></app-menu>
+<div class="row">
+    <div class="col ml-4" *ngFor="let album of albums">
+        <a [routerLink]="['/album', album.id]">
+        <img [src]="album.src" />
+        </a>
+    </div>
+
+</div>

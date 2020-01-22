@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink='/album'>{{ title }}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/new-album">new album</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link"  routerLink="/album">liste album</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      
+      <button (click)="logout()" class="btn btn-outline-success my-2 my-sm-0" *ngIf="isAuth">Logout</button>
+      
+    </form>
+    <span class="navbar-text" [class.red]="userBoolean" >{{ user.name }} - </span>
+    <span class="navbar-text">{{ user.lastLogin | date: 'dd/MM/yyyy' }}</span>
+  </div>
+
+</nav>
