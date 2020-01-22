@@ -1,0 +1,44 @@
+<div class="details container">
+    <div *ngIf="formule">
+
+        <div class="container-carousel" *ngIf="formule.destination.images">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item" [class.active]="i == 0"  *ngFor="let image of formule.destination.images; let i = index">
+                        <img class="image" src="assets/{{image}}">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="formuledetails container">
+            <h5 class="card-title">{{ formule.destination.region }}</h5>
+            <ul>
+                <li>
+                    <p>Date de départ: {{formule.date_depart | date:'yyyy/MM/dd' }}</p>
+                </li>
+                <li>
+                    <p>Date de départ: {{formule.date_retour | date:'yyyy/MM/dd'}}</p>
+                </li>
+                <li>
+                    <p>Prix: {{formule.prix_ht | currency:'EUR'}}/HT</p>
+                </li>
+                <li>
+                    <p>Nombre de places restantes: {{formule.nb_places}}</p>
+                </li>
+                <li>
+                    <p class="text-justify">{{formule.destination.description}}</p>
+            </ul>
+            <button [routerLink]="['/reservervoyage/', formule.id]" class="btn btn-warning">Réservation</button>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+</div>

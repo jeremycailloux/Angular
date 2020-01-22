@@ -1,0 +1,29 @@
+.details{
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 2%;
+    padding: 2%;    
+    background-color: rgb(228, 228, 228);
+    border-radius: 20px;
+}
+
+.container-carousel{
+    float: left;
+    margin-right: 15px;
+    width: 305px;
+}
+
+.image{
+    width: 300px;
+    height: 300px;
+    margin-left: 5px;
+}
+
+.formuledetails{
+float: left;
+width: 600px;
+}
+
+.btn{
+    width: 600px;
+}

@@ -1,0 +1,61 @@
+<div *ngIf="client" class="container">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <h3>{{client.nom}} {{client.prenom}}</h3> 
+        </div>
+        <div class="form-group col-md-6">
+            <button class="btn btn-danger" (click)="LogOut()">Deconnexion</button>
+        </div>
+    </div>
+    <h4>Mes réservations: </h4>
+    <div *ngIf="!client.reservations">
+        <h5>Vous n'avez pas de réservations</h5>
+        <a class="btn btn-secondary" [routerLink]="['/formulelist']">Réserver maintenant</a>
+    </div>
+    <div *ngIf="client.reservations">
+        <div *ngFor="let reservation of client.reservations; let i = index" class="margebottom">
+            <div *ngIf="reservation">
+                <div class="container-carousel" *ngIf="reservation.destination.images">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item" [class.active]="i == 0"
+                                *ngFor="let image of reservation.destination.images; let i = index">
+                                <img class="image" src="assets/{{image}}">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="formuledetails">
+                    <h5 class="card-title">{{ reservation.destination.region }}</h5>
+                    <ul>
+                        <li>
+                            <p>Date de départ: {{reservation.date_depart | date:'yyyy/MM/dd' }}</p>
+                        </li>
+                        <li>
+                            <p>Date de départ: {{reservation.date_retour | date:'yyyy/MM/dd'}}</p>
+                        </li>
+                        <li>
+                            <p>Prix: {{reservation.prix_ht | currency:'EUR'}}/HT</p>
+                        </li>
+                        <li>
+                            <p class="text-justify">{{reservation.destination.description}}</p>
+                    </ul>
+                    <button class="btn btn-warning" (click)="supprimerReservation(i)">Annuler réservation</button>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+    </div>
+
+</div>

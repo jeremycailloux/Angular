@@ -1,0 +1,86 @@
+<div>
+    <div class="resarvation">
+        <form (ngSubmit)="onSubmit()" [formGroup]="voyageurs">
+            <div formArrayName="voyageur">
+                <div *ngFor="let passager of voyageur.controls;let i = index">
+                    <div [formGroupName]='i'>
+                        <div class="form-row container">
+                            <div class="col-12">
+                                <h2> Voyageur {{i+1}} </h2>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <input type="text" class="form-control" placeholder="Nom" formControlName="prenom" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="text" class="form-control" placeholder="Prénom" formControlName="nom" />
+                            </div>
+                            <div class="form-group col-md-4">
+                                <div class="form-check-inline">
+                                    <input type="radio" class="form-check-input" formControlName="civilite" id="homme"
+                                        value="h" />
+                                    <label for="homme">Homme</label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input type="radio" class="form-check-input" formControlName="civilite" id="femme"
+                                        value="f" />
+                                    <label for="femme">Femme</label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="text" class="form-control" placeholder="Date de Naissance"
+                                    formControlName="date_naissance" />
+                            </div>
+
+                            <div class="form-group col-md-8">
+                                <input type="email" class="form-control" id="exampleDropdownFormEmail2"
+                                    placeholder="email@example.com" formControlName="email">
+                            </div>
+                            <div class="form-group col-md-7">
+                                <input type="text" class="form-control" id="adresse"
+                                    placeholder="Adresse: rue des amoureux - 75000 Paris-France"
+                                    formControlName="adresse">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <input type="text" class="form-control" id="tel" placeholder="Tél: 0611002233"
+                                    formControlName="telephone">
+                            </div>
+                            <div class="form-group col-md-5" *ngIf="i == 0">
+                                <input type="password" class="form-control" id="password"
+                                    placeholder="password" formControlName="password">
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" formControlName="assurance" id="assurance"
+                                    value="f" />
+                                <label for="assurance">Assurance</label>
+                            </div>
+                            <div>
+                                <button class="btn btn-danger" type="button" *ngIf="i>=1"
+                                    (click)="removeVoyageur(i)">Supprimer voyageur</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-success" type="button" [disabled]='voyageur.invalid'
+                        (click)="addVoyageur()">Ajouter un voyageur</button>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <button class="btn btn-warning" type="button" [disabled]='voyageurs.invalid'
+                            (click)="validerReservation()">Valider la Réservation</button>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <button class="btn btn-primary" type="submit" [disabled]='voyageurs.invalid'>Accéder au
+                            paiement</button>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <a class="btn btn-info" type="button" [routerLink]='["/formulelist"]'>Faire une autre
+                            réservation</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="container mt-3 mb-3">
+    <div class="row">
+        <div class="card col-3 mr-3 ml-3 mt-4 text-center" style="width: 18rem;" [routerLink]="['/formule/', formule.id]"
+            *ngFor="let formule of formules">
+            <div class="card-body">
+                <img src="assets/{{formule.destination.images[0]}}" *ngIf="formule.destination.images" class="card-img-top" alt="...">
+                <h5 class="card-title">{{formule.destination.region}}</h5>
+                <p class="card-text">Date de départ: {{formule.date_depart  | date:'yyyy/MM/dd'}}</p>
+                <p class="card-text">Date de retour: {{formule.date_retour | date:'yyyy/MM/dd'}}</p>
+                <p class="card-text">Prix: {{formule.prix_ht | currency:'EUR'}}/HT</p>
+                <p class="card-text">Nombre de places restantes: {{formule.nb_places}}</p>
+                <a [routerLink]="['/formule/', formule.id]" class="btn btn-primary">Voir détails</a>
+            </div>
+        </div>
+    </div>
+</div>
