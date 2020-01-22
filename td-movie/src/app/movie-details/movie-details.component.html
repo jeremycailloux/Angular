@@ -1,0 +1,16 @@
+<div class="container mb-3 mt-3" *ngIf="movie">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    {{movie.name}}
+                </div>
+                <div class="card-body">
+                    <p><span class="font-weight-italic">{{movie.name}}</span>, réalisé par {{movie.real}}
+                        {{movie.date | date:'yyyy'}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
